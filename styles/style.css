@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "BandeinsStrange";
+    src: url("../assets/fonts/BandeinsStrangeVariableGX.woff2") format("woff2");
+    font-weight: 200 800;
+    font-style: normal;
+}
+
+*{
+    font-family: BandeinsStrange;
+    font-variation-settings: "wght" 700, "wdth" 100;
+    margin: 0;
+}
+
+body{
+    margin: 1em 0.5em;
+}
+
+.back {
+    font-size: 4em;
+    margin: 0;
+    position: fixed;
+    right: 0.5em;
+    top: 0;
+}
+
+h1{
+    font-size: 4em;
+}
+
+h1 span {
+    font-variation-settings: "wght" 700, "wdth" 800;
+}
+
+section {
+    margin: 3em 2em;
+}
+
+ul {
+    font-family: Arial, Helvetica, sans-serif;
+}

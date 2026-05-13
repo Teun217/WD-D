@@ -1,0 +1,126 @@
+@font-face {
+    font-family: "BandeinsStrange";
+    src: url("../assets/fonts/BandeinsStrangeVariableGX.woff2") format("woff2");
+    font-weight: 200 800;
+    font-style: normal;
+}
+
+:root {
+    --animMin: 0.5;
+    --animMax: 1.5;
+    --animationLength: 6s;
+
+    --animRange: calc(var(--animMax) - var(--animMin));
+
+    --fontSizeLandingPage: 9.4em;
+}
+
+*{
+    font-family: BandeinsStrange;
+    margin: 0;
+}
+
+nav {
+    display: none;
+}
+
+.row {
+    position: relative;
+    width: 100%;
+    contain: layout;
+}
+
+.nav-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    white-space: nowrap;
+    font-family: BandeinsStrange;
+    font-size: var(--fontSizeLandingPage);
+    font-weight: bold;
+    color: blue;
+    text-decoration: none;
+    font-variation-settings: "wght" 700, "wdth" 100;
+    transition: transform 0.5s ease;
+}
+
+.row:hover .nav-link {
+    transform: translateX(0);
+}
+
+.background p {
+    transition: transform 0.5s ease;
+}
+
+.row:hover p {
+    transform: translateX(var(--link-width, 0px));
+}
+
+
+
+
+.background {
+    width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
+    
+    /* center */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+    p{
+        display: block;
+        font-size: var(--fontSizeLandingPage);
+        font-weight: bold;
+        white-space: nowrap;
+    }
+}
+
+.background p span:nth-child(odd) {
+    animation: letterStretch calc(var(--animationLength)*3.1) infinite alternate;
+}
+.background p span:nth-child(even) {
+    animation: letterStretch calc(var(--animationLength)*2.9) infinite alternate-reverse;
+}
+.background p span:nth-child(3n) {
+    animation: letterStretch calc(var(--animationLength)*1.1) infinite alternate;
+}
+.background p span:nth-child(3n + 2) {
+    animation: letterStretch calc(var(--animationLength)*0.9) infinite alternate-reverse;
+}
+.background p span:nth-child(4n - 3) {
+    animation: letterStretch calc(var(--animationLength)*1.4) infinite alternate;
+}
+.background p span:nth-child(4n + 1) {
+    animation: letterStretch calc(var(--animationLength)*0.6) infinite alternate-reverse;
+}
+
+@supports (animation-duration: calc(1s * mod(1, 2))) {
+    .background p span {
+        animation: letterStretch
+            calc(var(--animationLength) * (var(--animMin) + mod(sibling-index() * 7, 13) / 13 * var(--animRange)))
+            infinite alternate;
+    }
+    .background p span:nth-child(even) {
+        animation-direction: alternate-reverse;
+    }
+}
+
+.background p span {
+    will-change: font-variation-settings;
+}
+
+@keyframes letterStretch {
+    from {
+        font-variation-settings: "wght" 700, "wdth" 100;
+    } to {
+        font-variation-settings: "wght" 700, "wdth" 800;
+    }
+}
